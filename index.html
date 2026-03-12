@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imposto de Renda: Guia do Investidor</title>
+    <style>
+        :root {
+            --primary-color: #0b2545;
+            --secondary-color: #1a7431;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .headline h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .headline p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .benefits {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+        }
+
+            .benefits li {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+            }
+
+                .benefits li::before {
+                    content: "✓";
+                    color: var(--secondary-color);
+                    font-weight: bold;
+                    margin-right: 15px;
+                    font-size: 1.2rem;
+                }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+            .form-box h3 {
+                margin-bottom: 20px;
+                color: var(--primary-color);
+                text-align: center;
+            }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #145a26;
+            }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Guia IR 2026</h2>
+    </header>
+
+    <main class="container">
+        <section class="headline">
+            <h1>Imposto de Renda: <br> <span style="color: var(--secondary-color);">Guia de declaração para o investidor</span></h1>
+            <p>Não deixe seu lucro ir para a malha fina. Aprenda a declarar suas operações com segurança.</p>
+
+            <ul class="benefits">
+                <li>Passo a passo no programa da Receita</li>
+                <li>Cálculo de preço médio e DARFs</li>
+                <li>Como declarar Criptoativos e FIIs</li>
+                <li>Dicas para pagar menos imposto legalmente</li>
+            </ul>
+        </section>
+
+        <section class="form-box">
+            <h3>Preencha para baixar</h3>
+            <form id="lpForm">
+                <input type="text" id="nome" placeholder="Seu nome completo" required>
+                <input type="email" id="email" placeholder="Seu melhor e-mail" required>
+                <input type="tel" id="whatsapp" placeholder="WhatsApp (com DDD)" required>
+
+                <div class="form-row">
+                    <input type="number" id="idade" placeholder="Idade" required>
+                    <select id="valor" required>
+                        <option value="" disabled selected>Valor Investido</option>
+                        <option value="0-10k">Até R$ 10.000</option>
+                        <option value="10k-50k">R$ 10.000 a R$ 50.000</option>
+                        <option value="50k-200k">R$ 50.000 a R$ 200.000</option>
+                        <option value="200k+">Acima de R$ 200.000</option>
+                    </select>
+                </div>
+
+                <button type="submit">BAIXAR GUIA AGORA</button>
+                <p class="disclaimer">🔒 Seus dados estão protegidos.</p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Guia do Investidor - Maringá/PR.
+    </footer>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyJKKLb65vUrUlFUPExpNkOz8pwv8Fjp8b2n3ves_tNoFVeL7Bgxkwci5KfH9GsdJ7c/exec';
+        const form = document.getElementById('lpForm');
+        const btn = document.getElementById('btnSubmit');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+
+            const dados = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                idade: document.getElementById('idade').value,
+                valor: document.getElementById('valor').value
+            };
+
+            // Envia para o Google Sheets
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Necessário para Google Apps Script
+                body: JSON.stringify(dados),
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(() => {
+                    // Inicia o download após o envio
+                    window.location.href = "https://drive.google.com/uc?export=download&id=1eUWhh3z6YhBIZd4hEr8f-M4WfqIatstL";
+                    alert("Dados registrados! Seu download começará agora.");
+                    form.reset();
+                    btn.disabled = false;
+                    btn.innerText = "ENVIAR E BAIXAR";
+                })
+                .catch(error => {
+                    console.error('Erro!', error.message);
+                    btn.disabled = false;
+                    btn.innerText = "ERRO AO ENVIAR";
+                });
+        });
+    </script>
+
+</body>
+</html>
