@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imposto de Renda: Guia do Investidor 2026</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://drive.google.com/uc?export=view&id=1-RNqR-RwXyWArDCzktt86tIHFNrkItVK">
+
+    <link rel="icon" type="image/png" href="https://drive.google.com/uc?id=1-RNqR-RwXyWArDCzktt86tIHFNrkItVK">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,42 +32,64 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Manrope', sans-serif; }
         body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        
+        /* Cabeçalho com Imagem */
         header { 
             background: var(--dark-blue); 
             padding: 15px 0; 
             text-align: center; 
-            color: var(--white); 
-            border-bottom: 4px solid var(--brand-blue);
+            border-bottom: 4px solid var(--brand-blue); 
             display: flex;
             justify-content: center;
             align-items: center;
         }
         header img {
-            max-height: 80px;
+            max-height: 50px; /* Ajuste a altura conforme necessário */
             width: auto;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start; }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; } }
-
-        .headline h1 { font-size: 3rem; color: var(--dark-blue); margin-bottom: 25px; line-height: 1.1; font-weight: 800; }
-        .highlight-box { background: var(--white); padding: 25px; border-radius: 15px; border-left: 6px solid var(--brand-blue); margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        
-        .benefits { list-style: none; text-align: left; }
-        .benefits li { margin-bottom: 25px; display: flex; align-items: flex-start; }
-        .material-symbols-outlined { color: var(--brand-blue); margin-right: 18px; font-size: 32px !important; flex-shrink: 0; }
-        .benefit-content strong { display: block; color: var(--dark-blue); font-size: 1.05rem; }
-
-        .form-box { 
-            background: var(--white); 
-            padding: 50px; /* Aumentado de 40px para 50px */
-            border-radius: 24px; 
-            box-shadow: 0 25px 50px rgba(0,3,32,0.15); 
-            position: sticky; 
-            top: 20px; 
-            max-width: 500px; /* Adicionado para limitar o tamanho máximo */
-            margin: 0 auto; /* Adicionado para centralizar em telas menores */
+        /* Container Ajustado para Box de Info Maior (1.5fr) */
+        .container { 
+            max-width: 1200px; /* Aumentei um pouco a largura máxima */
+            margin: 0 auto; 
+            padding: 80px 20px; 
+            display: grid; 
+            grid-template-columns: 1.5fr 0.8fr; /* Aumentei a proporção da esquerda */
+            gap: 80px; /* Mais espaçamento entre as colunas */
+            align-items: start; 
         }
+        
+        @media (max-width: 950px) { /* Ajuste do breakpoint para a nova largura */
+            .container { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                padding: 40px 20px; 
+            } 
+        }
+
+        .headline h1 { font-size: 3.5rem; color: var(--dark-blue); margin-bottom: 30px; line-height: 1.1; font-weight: 800; }
+        
+        /* Box de Destaque com mais Padding */
+        .highlight-box { 
+            background: var(--white); 
+            padding: 35px; /* Mais espaçamento interno */
+            border-radius: 20px; 
+            border-left: 8px solid var(--brand-blue); 
+            margin-bottom: 50px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+        }
+        .highlight-box h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--dark-blue); font-weight: 800;}
+        .highlight-box p { font-size: 1.1rem; color: #555; }
+        
+        /* Lista de Benefícios com mais espaçamento */
+        .benefits { list-style: none; text-align: left; }
+        .benefits li { margin-bottom: 35px; display: flex; align-items: flex-start; }
+        .material-symbols-outlined { color: var(--brand-blue); margin-right: 20px; font-size: 36px !important; flex-shrink: 0; margin-top: 5px;}
+        .benefit-content strong { display: block; color: var(--dark-blue); font-size: 1.2rem; margin-bottom: 5px;}
+        .benefit-content p { font-size: 1.05rem; color: #555; }
+
+        /* Form Box mantida */
+        .form-box { background: var(--white); padding: 40px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,3,32,0.15); position: sticky; top: 20px; }
         .form-box h3 { margin-bottom: 25px; color: var(--dark-blue); text-align: center; font-weight: 800; }
 
         input, select { width: 100%; padding: 16px; margin-bottom: 15px; border: 2px solid #CDCDCD; border-radius: 12px; font-size: 1rem; transition: 0.3s; }
@@ -78,29 +99,47 @@
         button:hover { background-color: #0066CC; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 134, 255, 0.3); }
         button:disabled { background-color: #9B9B9B; cursor: not-allowed; transform: none; }
 
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #CDCDCD; margin-top: 40px; }
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #CDCDCD; margin-top: 60px; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="https://drive.google.com/uc?export=view&id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H" alt="Logo Guia IR 2026">
+        <img src="https://drive.google.com/uc?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H" alt="Logo Guia IR 2026">
     </header>
 
     <main class="container">
         <section class="headline">
             <h1>Imposto de Renda: <br> <span style="color: var(--brand-blue);">Declare com Segurança</span></h1>
-            <p style="margin-bottom: 30px; font-size: 1.1rem;">Organize sua vida fiscal em minutos e garanta que seus lucros fiquem no seu bolso, longe da malha fina.</p>
+            <p style="margin-bottom: 40px; font-size: 1.2rem; max-width: 90%;">Organize sua vida fiscal em minutos e garanta que seus lucros fiquem no seu bolso, longe da malha fina. O manual definitivo para o investidor moderno.</p>
 
             <div class="highlight-box">
-                <h4>O que você vai encontrar:</h4>
-                <p>Um manual visual e prático atualizado para as regras de 2026, focado em Renda Variável, FIIs e Ativos Digitais.</p>
+                <h4>O que você vai encontrar neste guia exclusivo:</h4>
+                <p>Um manual visual, prático e totalmente atualizado para as regras de 2026. Focado no que realmente importa: Renda Variável (Ações, Opções), FIIs, ETFs e Ativos Digitais (Cripto).</p>
             </div>
 
             <ul class="benefits">
-                <li><span class="material-symbols-outlined">timer</span><div class="benefit-content"><strong>Economia de Tempo</strong><p>Roteiro direto para preencher sua declaração sem ler manuais técnicos.</p></div></li>
-                <li><span class="material-symbols-outlined">gavel</span><div class="benefit-content"><strong>Blindagem Fiscal</strong><p>Evite os gatilhos automáticos que levam o investidor para a malha fina.</p></div></li>
-                <li><span class="material-symbols-outlined">account_balance_wallet</span><div class="benefit-content"><strong>Recupere Impostos</strong><p>Aprenda a compensar prejuízos passados legalmente.</p></div></li>
+                <li>
+                    <span class="material-symbols-outlined">timer</span>
+                    <div class="benefit-content">
+                        <strong>Máxima Economia de Tempo</strong>
+                        <p>Roteiro visual passo a passo para preencher sua declaração sem precisar decifrar manuais técnicos e confusos da Receita Federal.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">gavel</span>
+                    <div class="benefit-content">
+                        <strong>Blindagem Fiscal Completa</strong>
+                        <p>Entenda os cruzamentos de dados e evite os gatilhos automáticos que levam o CPF do investidor direto para a malha fina.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                    <div class="benefit-content">
+                        <strong>Recupere Impostos Legalmente</strong>
+                        <p>Descubra como utilizar prejuízos passados para abater o imposto devido e otimizar sua restituição com técnicas dentro da lei.</p>
+                    </div>
+                </li>
             </ul>
         </section>
 
@@ -108,9 +147,7 @@
             <h3>Baixe o Guia Gratuito</h3>
             <form id="lpForm">
                 <input type="text" id="nome" placeholder="Nome completo" required>
-                
                 <input type="email" id="email" placeholder="Seu melhor e-mail" required>
-                
                 <input type="tel" id="whatsapp" placeholder="WhatsApp (00) 00000-0000" maxlength="15" required>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
