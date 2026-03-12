@@ -21,248 +21,60 @@
     
     <style>
         :root {
-            --brand-blue: #0086FF;    /* Azul 01 */
-            --dark-blue: #001138;     /* Azul 03 */
-            --deep-navy: #000320;     /* Azul 04 */
-            --bg-light: #EBEBEB;      /* Cinza 01 */
-            --text-main: #353638;     /* Cinza 05 */
+            --brand-blue: #0086FF;
+            --dark-blue: #001138;
+            --bg-light: #EBEBEB;
+            --text-main: #353638;
             --white: #FFFFFF;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Manrope', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Manrope', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
+        header { background: var(--dark-blue); padding: 20px 0; text-align: center; color: var(--white); border-bottom: 4px solid var(--brand-blue); }
+        header h2 { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase; }
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start; }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; } }
 
-        header {
-            background: var(--dark-blue);
-            padding: 20px 0;
-            text-align: center;
-            color: var(--white);
-            border-bottom: 4px solid var(--brand-blue);
-        }
+        .headline h1 { font-size: 3rem; color: var(--dark-blue); margin-bottom: 25px; line-height: 1.1; font-weight: 800; }
+        .highlight-box { background: var(--white); padding: 25px; border-radius: 15px; border-left: 6px solid var(--brand-blue); margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        
+        .benefits { list-style: none; text-align: left; }
+        .benefits li { margin-bottom: 25px; display: flex; align-items: flex-start; }
+        .material-symbols-outlined { color: var(--brand-blue); margin-right: 18px; font-size: 32px !important; flex-shrink: 0; }
+        .benefit-content strong { display: block; color: var(--dark-blue); font-size: 1.05rem; }
 
-        header h2 {
-            font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .form-box { background: var(--white); padding: 40px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,3,32,0.15); position: sticky; top: 20px; }
+        .form-box h3 { margin-bottom: 25px; color: var(--dark-blue); text-align: center; font-weight: 800; }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: start;
-        }
+        input, select { width: 100%; padding: 16px; margin-bottom: 15px; border: 2px solid #CDCDCD; border-radius: 12px; font-size: 1rem; transition: 0.3s; }
+        input:focus { outline: none; border-color: var(--brand-blue); box-shadow: 0 0 0 4px rgba(0, 134, 255, 0.1); }
 
-        @media (max-width: 850px) {
-            .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 40px 20px;
-            }
-        }
+        button { width: 100%; padding: 20px; background-color: var(--brand-blue); color: var(--white); border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background-color: #0066CC; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 134, 255, 0.3); }
+        button:disabled { background-color: #9B9B9B; cursor: not-allowed; transform: none; }
 
-        .headline h1 {
-            font-size: 3rem;
-            color: var(--dark-blue);
-            margin-bottom: 25px;
-            line-height: 1.1;
-            font-weight: 800;
-        }
-
-        .intro-text {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: var(--text-main);
-            opacity: 0.9;
-        }
-
-        .highlight-box {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 6px solid var(--brand-blue);
-            margin-bottom: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .highlight-box h4 {
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .benefits {
-            list-style: none;
-            text-align: left;
-        }
-
-        .benefits li {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .material-symbols-outlined {
-            color: var(--brand-blue);
-            margin-right: 18px;
-            font-size: 32px !important;
-            flex-shrink: 0;
-        }
-
-        .benefit-content strong {
-            display: block;
-            color: var(--dark-blue);
-            font-size: 1.05rem;
-            margin-bottom: 4px;
-        }
-
-        .benefit-content p {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .form-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0,3,32,0.15);
-            position: sticky;
-            top: 40px;
-        }
-
-        .form-box h3 {
-            margin-bottom: 25px;
-            color: var(--dark-blue);
-            text-align: center;
-            font-weight: 800;
-            font-size: 1.4rem;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 15px;
-            border: 2px solid #CDCDCD;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--brand-blue);
-            box-shadow: 0 0 0 4px rgba(0, 134, 255, 0.1);
-        }
-
-        button {
-            width: 100%;
-            padding: 20px;
-            background-color: var(--brand-blue);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            font-size: 1.15rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #0066CC;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 134, 255, 0.3);
-        }
-
-        button:disabled {
-            background-color: #9B9B9B;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .disclaimer {
-            font-size: 0.85rem;
-            color: #67686A;
-            margin-top: 20px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            border-top: 1px solid #CDCDCD;
-            margin-top: 40px;
-        }
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #CDCDCD; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h2>Guia IR 2026 &bull; Investidores</h2>
-    </header>
+    <header><h2>Guia IR 2026 &bull; Investidores</h2></header>
 
     <main class="container">
         <section class="headline">
             <h1>Imposto de Renda: <br> <span style="color: var(--brand-blue);">Declare com Segurança</span></h1>
-            
-            <p class="intro-text">Dominar o mercado é apenas metade do caminho. A outra metade é garantir que seus lucros fiquem no seu bolso, e não em multas por erros evitáveis na declaração anual.</p>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Organize sua vida fiscal em minutos e garanta que seus lucros fiquem no seu bolso, longe da malha fina.</p>
 
             <div class="highlight-box">
-                <h4>Por que este guia é essencial?</h4>
-                <p>Esqueça manuais técnicos de 500 páginas. Compilamos as mudanças reais de 2026 para Renda Variável, FIIs e Cripto em um passo a passo visual e prático.</p>
+                <h4>O que você vai encontrar:</h4>
+                <p>Um manual visual e prático atualizado para as regras de 2026, focado em Renda Variável, FIIs e Ativos Digitais.</p>
             </div>
 
             <ul class="benefits">
-                <li>
-                    <span class="material-symbols-outlined">timer</span>
-                    <div class="benefit-content">
-                        <strong>Economize Horas de Trabalho</strong>
-                        <p>Um roteiro direto ao ponto para você preencher sua declaração em minutos, sem dúvidas sobre qual código utilizar.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="material-symbols-outlined">gavel</span>
-                    <div class="benefit-content">
-                        <strong>Blindagem Anti-Malha Fina</strong>
-                        <p>Conheça os "rastros" que os investidores deixam e que ativam o alerta da Receita Federal automaticamente.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="material-symbols-outlined">account_balance_wallet</span>
-                    <div class="benefit-content">
-                        <strong>Recupere Imposto Pago</strong>
-                        <p>Aprenda a técnica legal de compensação de prejuízos para reduzir o valor devido ou aumentar sua restituição.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="material-symbols-outlined">currency_bitcoin</span>
-                    <div class="benefit-content">
-                        <strong>Criptoativos e Ativos Globais</strong>
-                        <p>Atualizado com as novas regras de 2026 para Stablecoins, Staking e contas de investimento no exterior.</p>
-                    </div>
-                </li>
+                <li><span class="material-symbols-outlined">timer</span><div class="benefit-content"><strong>Economia de Tempo</strong><p>Roteiro direto para preencher sua declaração sem ler manuais técnicos.</p></div></li>
+                <li><span class="material-symbols-outlined">gavel</span><div class="benefit-content"><strong>Blindagem Fiscal</strong><p>Evite os gatilhos automáticos que levam o investidor para a malha fina.</p></div></li>
+                <li><span class="material-symbols-outlined">account_balance_wallet</span><div class="benefit-content"><strong>Recupere Impostos</strong><p>Aprenda a compensar prejuízos passados legalmente.</p></div></li>
             </ul>
         </section>
 
@@ -270,43 +82,49 @@
             <h3>Baixe o Guia Gratuito</h3>
             <form id="lpForm">
                 <input type="text" id="nome" placeholder="Nome completo" required>
+                
                 <input type="email" id="email" placeholder="Seu melhor e-mail" required>
-                <input type="tel" id="whatsapp" placeholder="WhatsApp (com DDD)" required>
+                
+                <input type="tel" id="whatsapp" placeholder="WhatsApp (00) 00000-0000" maxlength="15" required>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="number" id="idade" placeholder="Idade" required>
+                    <input type="number" id="idade" placeholder="Idade" min="12" max="100" required>
                     <select id="valor" required>
-                        <option value="" disabled selected>Valor Investido</option>
-                        <option value="0-10k">Até R$ 10.000</option>
-                        <option value="10k-50k">R$ 10k a R$ 50k</option>
-                        <option value="50k-200k">R$ 50k a R$ 200k</option>
-                        <option value="200k+">Acima de R$ 200k</option>
+                        <option value="" disabled selected>Investimentos</option>
+                        <option value="Não invisto">Não invisto</option>
+                        <option value="Até 20 mil">Até 20 mil</option>
+                        <option value="20 mil - 50 mil">De 20 mil até 50 mil</option>
+                        <option value="50 mil - 200 mil">De 50 mil até 200 mil</option>
+                        <option value="200 mil - 500 mil">De 200 mil até 500 mil</option>
+                        <option value="Mais de 500 mil">Mais de 500 mil</option>
                     </select>
                 </div>
 
                 <button type="submit" id="btnSubmit">Quero o guia gratuito</button>
-                <div class="disclaimer">
-                    <span class="material-symbols-outlined" style="font-size: 18px; color: #67686A;">lock</span>
-                    Seus dados estão protegidos e seguros.
-                </div>
             </form>
         </section>
     </main>
 
-    <footer>
-        &copy; 2026 Guia do Investidor &bull; Maringá, PR
-    </footer>
+    <footer>&copy; 2026 Guia do Investidor &bull; Maringá, PR</footer>
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyJKKLb65vUrUlFUPExpNkOz8pwv8Fjp8b2n3ves_tNoFVeL7Bgxkwci5KfH9GsdJ7c/exec';
         const form = document.getElementById('lpForm');
         const btn = document.getElementById('btnSubmit');
+        const telInput = document.getElementById('whatsapp');
+
+        // Máscara de Telefone em Tempo Real
+        telInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, "");
+            value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+            e.target.value = value;
+        });
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
             btn.disabled = true;
-            btn.innerText = "Preparando seu guia...";
+            btn.innerText = "Preparando guia...";
 
             const dados = {
                 nome: document.getElementById('nome').value,
@@ -316,27 +134,19 @@
                 valor: document.getElementById('valor').value
             };
 
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(dados),
-                headers: { 'Content-Type': 'application/json' }
-            })
+            fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dados) })
             .then(() => {
-                // Link de download direto do seu Google Drive
                 window.location.href = "https://drive.google.com/uc?export=download&id=1eUWhh3z6YhBIZd4hEr8f-M4WfqIatstL";
-                alert("Tudo pronto! Seu download começará agora.");
+                alert("Download iniciado com sucesso!");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "Quero o guia gratuito";
             })
-            .catch(error => {
-                console.error('Erro!', error.message);
+            .catch(() => {
                 btn.disabled = false;
-                btn.innerText = "Erro ao enviar. Tente novamente.";
+                btn.innerText = "Erro ao enviar";
             });
         });
     </script>
-
 </body>
 </html>
