@@ -170,7 +170,7 @@
             <h2>O que você vai encontrar no guia?</h2>
             <div class="features-grid">
                 <div class="ebook-img">
-                    <img src="https://drive.google.com/thumbnail?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H&sz=w500" alt="Mockup" class="ebook-mockup" style="filter: brightness(0.4);">
+                    <img src="https://drive.google.com/thumbnail?id=1xoUYandMHlDhK1g6w8SCIfysgv6YFig4&sz=w1000" alt="Guia do Investidor Mockup" class="ebook-mockup">
                 </div>
                 <div class="features-list">
                     <div class="feature-item">
@@ -207,7 +207,7 @@
                     <p>Mais do que apenas cumprir uma obrigação, a declaração de IR é uma ferramenta de gestão do seu patrimônio. Com nosso guia, você garante que cada centavo investido esteja devidamente protegido contra a malha fina.</p>
                 </div>
                 <div class="strategy-img">
-                    <img src="https://drive.google.com/thumbnail?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H&sz=w500" alt="Tablet" style="width: 100%; border-radius: 8px; opacity: 0.7;">
+                    <img src="https://drive.google.com/thumbnail?id=17ZcDqui6oQUgz_gPRMqIbz46kfftU5EO&sz=w1000" alt="Tablet Proteção Patrimonial" style="width: 100%; border-radius: 8px;">
                 </div>
             </div>
             <div class="cta-wrapper">
@@ -269,13 +269,14 @@
             };
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dados) })
             .then(() => {
+                // LINK DE DOWNLOAD ATUALIZADO NO PASSO ANTERIOR
                 window.location.href = "https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i";
                 alert("Download iniciado!");
                 form.reset();
                 checkForm();
+                btn.innerText = "Receber material"; // Reseta o texto do botão
             });
         });
     </script>
 </body>
 </html>
-
