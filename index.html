@@ -72,7 +72,6 @@
 
         .container { max-width: 1100px; margin: auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
         
-        /* CONTENT BOX AJUSTADO PARA ALINHAMENTO À ESQUERDA */
         .content-box { 
             background: rgba(0, 0, 0, 0.7); 
             padding: 60px 50px; 
@@ -80,16 +79,15 @@
             display: flex; 
             flex-direction: column; 
             justify-content: center;
-            align-items: flex-start; /* Garante alinhamento à esquerda dos itens */
+            align-items: flex-start;
         }
         
-        /* LOGO ALINHADA AO TEXTO */
         .logo { 
             max-height: 45px; 
             width: auto; 
             object-fit: contain; 
             margin-bottom: 40px;
-            display: block; /* Ocupa a linha inteira, alinhada à esquerda pelo pai */
+            display: block;
         }
 
         .headline h1 { font-size: 2.8rem; margin-bottom: 20px; font-weight: 800; line-height: 1.1; text-align: left; }
@@ -123,15 +121,54 @@
         .btn-submit.ready { background-color: var(--brand-blue); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(0, 134, 255, 0.2); }
         .btn-submit.ready:hover { transform: translateY(-2px); background-color: #0066CC; }
 
-        .section-white { background-color: var(--off-white); color: var(--text-dark); padding: 100px 20px; text-align: center; }
-        .section-white h2 { font-size: 2.2rem; margin-bottom: 70px; font-weight: 800; }
-        .features-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; text-align: left; }
-        .ebook-mockup { width: 100%; max-width: 450px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
+        /* --- SEÇÃO BRANCA AJUSTADA PARA SER MAIS COMPACTA --- */
+        .section-white { 
+            background-color: var(--off-white); 
+            color: var(--text-dark); 
+            padding: 60px 20px; /* Reduzido de 100px */
+            text-align: center; 
+        }
+        .section-white h2 { 
+            font-size: 2.2rem; 
+            margin-bottom: 40px; /* Reduzido de 70px */
+            font-weight: 800; 
+        }
+        .features-grid { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 40px; /* Reduzido de 60px */
+            align-items: center; 
+            text-align: left; 
+        }
+        .ebook-mockup { 
+            width: 100%; 
+            max-width: 400px; /* Ligeiramente reduzido de 450px */
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); 
+        }
         
-        .feature-item { display: flex; gap: 18px; margin-bottom: 45px; }
-        .feature-item .check-icon { color: var(--brand-blue); font-size: 30px; font-weight: bold; }
-        .feature-item h4 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; color: #222; }
-        .feature-item p { font-size: 1rem; color: #555; line-height: 1.7; }
+        .feature-item { 
+            display: flex; 
+            gap: 18px; 
+            margin-bottom: 25px; /* Reduzido significativamente de 45px */
+        }
+        .feature-item .check-icon { 
+            color: var(--brand-blue); 
+            font-size: 28px; /* Ligeiramente reduzido */
+            font-weight: bold; 
+        }
+        .feature-item h4 { 
+            font-size: 1.2rem; /* Ligeiramente reduzido */
+            margin-bottom: 5px; /* Reduzido de 10px */
+            font-weight: 700; 
+            color: #222; 
+        }
+        .feature-item p { 
+            font-size: 0.95rem; /* Ligeiramente reduzido */
+            color: #555; 
+            line-height: 1.6; /* Ligeiramente reduzido */
+        }
 
         .section-dark { background-color: var(--bg-dark); padding: 100px 20px; text-align: center; border-top: 1px solid #222; }
         .strategy-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; text-align: left; margin-bottom: 50px; }
@@ -151,7 +188,11 @@
             .logo { margin: 0 auto 30px auto; }
             .headline h1, .headline p, .hero-benefits, .strategy-content h2, .strategy-content p { text-align: center; }
             .hero-benefits li { justify-content: center; }
-            .feature-item { flex-direction: column; align-items: center; text-align: center; }
+            
+            /* Ajustes Mobile para Seção Branca Compacta */
+            .features-grid { gap: 30px; }
+            .feature-item { flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; }
+            .feature-item h4 { margin-top: 10px; }
         }
     </style>
 </head>
