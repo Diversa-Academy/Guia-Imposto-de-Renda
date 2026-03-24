@@ -25,6 +25,9 @@
     fbq('init', '1917244748896578');
     fbq('track', 'PageView');
     </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1917244748896578&ev=PageView&noscript=1"
+    /></noscript>
 
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1-RNqR-RwXyWArDCzktt86tIHFNrkItVK&sz=w32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,8 +49,10 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Manrope', sans-serif; scroll-behavior: smooth; }
         body { background-color: #000; color: var(--white); overflow-x: hidden; }
 
-        .reveal { opacity: 0; transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(30px); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 0; transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
+        .reveal-top { transform: translateY(-50px); }
+        .reveal-bottom { transform: translateY(50px); }
 
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
@@ -56,6 +61,7 @@
             z-index: 1000; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: 0.3s;
         }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128C7E; }
 
         .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 60px 0; }
         .bg-overlay {
@@ -66,95 +72,127 @@
 
         .container { max-width: 1100px; margin: auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
         
-        .content-box { background: rgba(0, 0, 0, 0.7); padding: 60px 50px; border-radius: 4px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
-        .logo { max-height: 45px; margin-bottom: 25px; display: block; }
-        .headline h1 { font-size: 2.8rem; margin-bottom: 20px; font-weight: 800; line-height: 1.1; }
-        .headline p { font-size: 1.1rem; margin-bottom: 35px; opacity: 0.9; line-height: 1.6; }
-        .hero-benefits { list-style: none; width: 100%; }
+        .content-box { 
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 60px 50px; 
+            border-radius: 4px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        .logo { 
+            max-height: 45px; 
+            width: auto; 
+            object-fit: contain; 
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .headline h1 { font-size: 2.8rem; margin-bottom: 20px; font-weight: 800; line-height: 1.1; text-align: left; }
+        .headline p { font-size: 1.1rem; margin-bottom: 35px; opacity: 0.9; line-height: 1.6; text-align: left; }
+
+        .hero-benefits { list-style: none; width: 100%; text-align: left; }
         .hero-benefits li { margin-bottom: 18px; display: flex; align-items: flex-start; }
         .hero-benefits .material-symbols-outlined { color: var(--brand-blue); margin-right: 12px; font-size: 26px !important; }
 
-        /* PROVA SOCIAL ALINHADA (LARGURA 100%) */
+        /* --- PROVA SOCIAL (AJUSTADA PARA LARGURA TOTAL) --- */
         .social-proof {
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 15px; border-radius: 4px; margin-bottom: 25px; width: 100%;
-            box-sizing: border-box;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            align-self: flex-start;
         }
-        .avatars { display: flex; margin-right: 15px; }
+        .avatars { display: flex; margin-right: 10px; }
         .avatar {
-            width: 28px; height: 28px; border-radius: 50%;
+            width: 22px; height: 22px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 800; color: white;
-            margin-left: -12px; border: 2px solid var(--off-white);
+            font-size: 9px; font-weight: 800; color: white;
+            margin-left: -8px; border: 2px solid var(--off-white);
         }
         .avatar:first-child { margin-left: 0; }
-        .proof-text { font-size: 0.9rem; color: #444; font-weight: 600; }
-        .proof-text strong { color: var(--brand-blue); }
+        .proof-text { font-size: 0.8rem; color: #555; }
+        .proof-text strong { color: #222; margin-right: 4px; }
 
-        .form-box { background: var(--off-white); padding: 50px; border-radius: 4px; color: var(--text-dark); box-shadow: 0 20px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
-        .form-box h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+        /* Form Box */
+        .form-box { background: var(--off-white); padding: 50px 50px; border-radius: 4px; color: var(--text-dark); box-shadow: 0 20px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: center; }
+        .form-box h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
         .highlight-free { color: var(--brand-blue); text-decoration: underline; font-weight: 800; }
-        .form-box p.form-desc { font-size: 0.95rem; color: #666; margin-bottom: 25px; }
+        .form-box p { font-size: 0.9rem; color: #666; margin-bottom: 25px; }
 
-        .input-group { margin-bottom: 20px; width: 100%; }
-        .input-group label { display: block; font-size: 0.8rem; color: #777; margin-bottom: 4px; font-weight: 700; text-transform: uppercase; }
-        input, select { width: 100%; padding: 12px 0; background: transparent; border: none; border-bottom: 2px solid #ddd; font-size: 1rem; color: #333; transition: 0.3s; box-sizing: border-box; }
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; font-size: 0.8rem; color: #777; margin-bottom: 4px; font-weight: 600; }
+        input, select { width: 100%; padding: 10px 0; background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 1rem; color: #333; transition: 0.3s; }
         input:focus, select:focus { outline: none; border-bottom-color: var(--brand-blue); }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-row { display: grid; grid-template-columns: 0.6fr 1.4fr; gap: 20px; }
         
         .btn-submit { 
             width: 100%; padding: 20px; background-color: var(--btn-disabled); color: #999; border: none; border-radius: 4px; 
-            font-size: 1rem; font-weight: 800; cursor: not-allowed; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.5s; text-transform: uppercase;
+            font-size: 1rem; font-weight: 800; cursor: not-allowed; margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.5s; text-transform: uppercase;
         }
         .btn-submit.ready { background-color: var(--brand-blue); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(0, 134, 255, 0.2); }
+        .btn-submit.ready:hover { transform: translateY(-2px); background-color: #0066CC; }
 
-        .section-white { background-color: var(--off-white); color: var(--text-dark); padding: 80px 20px; text-align: center; }
+        /* Seções extras */
+        .section-white { background-color: var(--off-white); color: var(--text-dark); padding: 60px 20px; text-align: center; }
+        .section-white h2 { font-size: 2.2rem; margin-bottom: 40px; font-weight: 800; }
         .features-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; text-align: left; }
-        .ebook-mockup { width: 100%; max-width: 450px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
-        .feature-item { display: flex; gap: 18px; margin-bottom: 30px; }
+        .ebook-mockup { width: 100%; max-width: 400px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
+        .feature-item { display: flex; gap: 18px; margin-bottom: 25px; }
         .feature-item .check-icon { color: var(--brand-blue); font-size: 28px; font-weight: bold; }
+        .feature-item h4 { font-size: 1.2rem; margin-bottom: 5px; font-weight: 700; color: #222; }
+        .feature-item p { font-size: 0.95rem; color: #555; line-height: 1.6; }
 
         .section-dark { background-color: var(--bg-dark); padding: 100px 20px; text-align: center; border-top: 1px solid #222; }
         .strategy-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; text-align: left; margin-bottom: 50px; }
-        .strategy-content h2 { font-size: 2.5rem; margin-bottom: 25px; font-weight: 800; color: var(--white); }
-        .strategy-content p { font-size: 1.2rem; opacity: 0.85; line-height: 1.7; color: var(--white); }
-        .btn-cta { display: inline-flex; align-items: center; gap: 10px; background-color: var(--brand-blue); color: white; padding: 20px 45px; border-radius: 4px; text-decoration: none; font-weight: 800; text-transform: uppercase; }
+        .strategy-content h2 { font-size: 2.5rem; margin-bottom: 25px; font-weight: 800; line-height: 1.1; color: var(--white); text-align: left; }
+        .strategy-content p { font-size: 1.2rem; margin-bottom: 35px; opacity: 0.85; line-height: 1.7; color: var(--white); text-align: left; }
 
         footer { background-color: #000; padding: 60px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
+        .footer-logo { max-height: 35px; margin-bottom: 20px; opacity: 0.7; }
         .footer-copy { font-size: 0.8rem; opacity: 0.5; }
 
         @media (max-width: 900px) {
             .container, .features-grid, .strategy-grid { grid-template-columns: 1fr; text-align: center; }
-            .content-box, .form-box, .strategy-content { align-items: center; text-align: center; }
-            .headline h1, .headline p, .strategy-content h2 { text-align: center; }
+            .content-box, .form-box { padding: 40px 25px; align-items: center; text-align: center; }
+            .logo { margin: 0 auto 30px auto; }
+            .social-proof { align-self: center; }
+            .headline h1, .headline p, .hero-benefits, .strategy-content h2, .strategy-content p { text-align: center; }
             .hero-benefits li { justify-content: center; }
+            .feature-item { flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://api.whatsapp.com/send/?phone=554433466200&text=Olá!" class="whatsapp-float" target="_blank">
+    <a href="https://api.whatsapp.com/send/?phone=554433466200&text=Olá%21+%0AEncontrei+vocês+através+do+Guia+da+Declaração+do+IR+para+o+Investidor+e+gostaria+de+conversar+com+um+assessor+de+investimentos.&type=phone_number&app_absent=0" class="whatsapp-float" target="_blank">
         <svg style="width:35px; height:35px;" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.19-.3a8.132 8.132 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m-3.53 3.03c-.19 0-.43.07-.66.33-.23.25-.87.86-.87 2.1s.9 2.44 1.02 2.61c.12.17 1.76 2.68 4.26 3.76.6.25 1.06.41 1.43.52.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.17-.48-.3s-1.47-.73-1.7-.81c-.23-.08-.4-.12-.57.13-.17.25-.65.81-.8 1-.14.16-.29.18-.54.06-.25-.13-1.04-.38-1.99-1.22-.74-.66-1.23-1.48-1.38-1.73-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.57-1.37-.78-1.88c-.2-.5-.42-.43-.57-.44h-.43Z" /></svg>
     </a>
 
     <section class="hero">
         <div class="bg-overlay"></div>
         <main class="container">
-            <div class="content-box reveal">
+            <div class="content-box reveal reveal-top">
                 <img src="https://drive.google.com/thumbnail?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H&sz=w500" alt="Logo Diversa" class="logo">
                 <div class="headline">
                     <h1>Guia completo:<br> <span style="color: var(--brand-blue);">Declaração para Investidores</span></h1>
-                    <p>O material definitivo para organizar sua vida fiscal em 2026. Aprenda a declarar Ações, FIIs, Cripto e Ativos no Exterior.</p>
+                    <p>O material definitivo para organizar sua vida fiscal em 2026. Aprenda a declarar Ações, FIIs, Criptoativos e Investimentos no Exterior de forma correta e segura.</p>
                 </div>
                 <ul class="hero-benefits">
-                    <li><span class="material-symbols-outlined">description</span><p>Conteúdo atualizado para as novas regras de 2026</p></li>
-                    <li><span class="material-symbols-outlined">security</span><p>Tutorial passo a passo no programa da Receita</p></li>
-                    <li><span class="material-symbols-outlined">trending_up</span><p>Estratégias para otimizar sua restituição</p></li>
+                    <li><span class="material-symbols-outlined">description</span><p>Conteúdo atualizado com as novas regras da Receita</p></li>
+                    <li><span class="material-symbols-outlined">security</span><p>Tutorial passo a passo para preenchimento do programa</p></li>
+                    <li><span class="material-symbols-outlined">trending_up</span><p>Estratégias legais para otimizar sua restituição</p></li>
                 </ul>
             </div>
 
-            <div class="form-box reveal" id="form-top">
+            <div class="form-box reveal reveal-bottom" id="form-top">
+                
                 <div class="social-proof">
                     <div class="avatars">
                         <div class="avatar" style="background: #34C759;">G</div>
@@ -162,25 +200,28 @@
                         <div class="avatar" style="background: #5AC8FA;">L</div>
                         <div class="avatar" style="background: #FF3B30;">B</div>
                     </div>
-                    <div class="proof-text"><strong id="downloadCount">1.249</strong> investidores já baixaram o guia</div>
+                    <div class="proof-text">
+                        <strong id="downloadCount">1.249</strong> investidores já baixaram
+                    </div>
                 </div>
 
                 <h3>Acesse o material agora</h3>
-                <p class="form-desc">Receba o PDF completo <span class="highlight-free">gratuitamente</span> no seu e-mail.</p>
+                <p>Preencha abaixo para receber o PDF <span class="highlight-free">gratuitamente</span> no seu e-mail.</p>
                 
                 <form id="lpForm">
                     <div class="input-group"><label>Nome Completo</label><input type="text" id="nome" required></div>
-                    <div class="input-group"><label>E-mail</label><input type="email" id="email" required></div>
-                    <div class="input-group"><label>WhatsApp</label><input type="tel" id="whatsapp" placeholder="(00) 00000-0000" maxlength="15" required></div>
+                    <div class="input-group"><label>Seu melhor e-mail</label><input type="email" id="email" required></div>
+                    <div class="input-group"><label>WhatsApp com DDD</label><input type="tel" id="whatsapp" placeholder="(00) 00000-0000" maxlength="15" required></div>
                     <div class="form-row">
-                        <div class="input-group"><label>Idade</label><input type="number" id="idade" required></div>
-                        <div class="input-group">
-                            <label>Investimentos</label>
+                        <div class="input-group"><label>Idade</label><input type="number" id="idade" min="12" required></div>
+                        <div class="input-group"><label>Volume de Investimentos</label>
                             <select id="valor" required>
-                                <option value="" disabled selected>Selecionar...</option>
-                                <option value="Até R$ 50 mil">Até R$ 50 mil</option>
-                                <option value="R$ 50 mil - R$ 200 mil">R$ 50 mil - R$ 200 mil</option>
-                                <option value="Acima de R$ 200 mil">Acima de R$ 200 mil</option>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="Até R$ 20 mil">Até R$ 20 mil</option>
+                                <option value="R$ 20 mil - R$ 50 mil">R$ 20 mil até R$ 50 mil</option>
+                                <option value="R$ 50 mil - R$ 200 mil">R$ 50 mil até R$ 200 mil</option>
+                                <option value="R$ 200 mil - R$ 500 mil">R$ 200 mil até R$ 500 mil</option>
+                                <option value="Acima de R$ 500 mil">Acima de R$ 500 mil</option>
                             </select>
                         </div>
                     </div>
@@ -191,30 +232,32 @@
     </section>
 
     <section class="section-white">
-        <div class="reveal">
-            <h2 style="font-size: 2.2rem; margin-bottom: 40px; font-weight: 800;">O que você vai encontrar no guia?</h2>
+        <div class="reveal reveal-bottom">
+            <h2>O que você vai encontrar no guia?</h2>
             <div class="features-grid">
-                <img src="https://drive.google.com/thumbnail?id=1xoUYandMHlDhK1g6w8SCIfysgv6YFig4&sz=w1000" alt="Ebook Mockup" class="ebook-mockup">
+                <div class="ebook-img">
+                    <img src="https://drive.google.com/thumbnail?id=1xoUYandMHlDhK1g6w8SCIfysgv6YFig4&sz=w1000" alt="Mockup Guia" class="ebook-mockup">
+                </div>
                 <div class="features-list">
                     <div class="feature-item">
                         <span class="check-icon">✓</span>
                         <div>
-                            <h4>Renda Variável e FIIs</h4>
-                            <p>Capítulo dedicado à declaração de Ações e Fundos Imobiliários conforme as novas normas.</p>
+                            <h4>Renda Variável Nacional e FIIs</h4>
+                            <p>Capítulo dedicado à declaração de Ações, ETFs e Fundos de Investimento Imobiliário em conformidade com as normas vigentes.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="check-icon">✓</span>
                         <div>
-                            <h4>Cripto e Exterior</h4>
-                            <p>Tutorial sobre Criptoativos e ativos internacionais (Stocks e REITs).</p>
+                            <h4>Ativos Internacionais e Criptomoedas</h4>
+                            <p>Um tutorial completo sobre como declarar Stocks, REITs e criptoativos, abordando as atualizações para Offshores de 2026.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="check-icon">✓</span>
                         <div>
-                            <h4>Checklist Completo</h4>
-                            <p>Lista de todos os documentos e informes necessários para não cair na malha fina.</p>
+                            <h4>Checklist de Documentos</h4>
+                            <p>Organize seus informes de rendimento, notas de corretagem e extratos bancários para um preenchimento rápido e sem erros.</p>
                         </div>
                     </div>
                 </div>
@@ -223,21 +266,21 @@
     </section>
 
     <section class="section-dark">
-        <div class="reveal">
+        <div class="reveal reveal-bottom">
             <div class="strategy-grid">
                 <div class="strategy-content">
                     <h2>Segurança jurídica e patrimonial</h2>
-                    <p>A declaração correta é a sua maior proteção. Com nosso guia, você garante que seu patrimônio esteja 100% regularizado perante o fisco, evitando multas e dores de cabeça.</p>
+                    <p>A declaração correta é a sua maior proteção contra a malha fina. Com nosso guia, você garante que seu patrimônio esteja 100% regularizado perante o fisco.</p>
                 </div>
                 <div class="strategy-img">
-                    <img src="https://drive.google.com/thumbnail?id=17ZcDqui6oQUgz_gPRMqIbz46kfftU5EO&sz=w1000" alt="Segurança" style="width: 100%; border-radius: 8px;">
+                    <img src="https://drive.google.com/thumbnail?id=17ZcDqui6oQUgz_gPRMqIbz46kfftU5EO&sz=w1000" alt="Proteção Patrimonial" style="width: 100%; border-radius: 8px;">
                 </div>
             </div>
-            <a href="#form-top" class="btn-cta">QUERO ACESSAR O GUIA COMPLETO <span>→</span></a>
         </div>
     </section>
 
     <footer>
+        <img src="https://drive.google.com/thumbnail?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H&sz=w500" alt="Logo Diversa" class="footer-logo">
         <p class="footer-copy">© 2026 Diversa Investimentos • Todos os direitos reservados.</p>
     </footer>
 
@@ -251,15 +294,18 @@
         window.addEventListener("DOMContentLoaded", reveal);
         window.addEventListener("scroll", reveal);
 
+        // Lógica do Contador Persistente (LocalStorage)
         function updateDownloadCounter() {
-            const storageKey = 'diversa_final_exact_width_v3';
+            const storageKey = 'diversa_downloads_right_box';
             const baseValue = 1249;
             let currentCount = localStorage.getItem(storageKey);
+            
             if (!currentCount) {
                 currentCount = baseValue;
             } else {
                 currentCount = parseInt(currentCount) + Math.floor(Math.random() * 2) + 1;
             }
+            
             localStorage.setItem(storageKey, currentCount);
             document.getElementById('downloadCount').innerText = currentCount.toLocaleString('pt-BR');
         }
@@ -290,7 +336,7 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            btn.innerText = "ENVIANDO...";
+            btn.innerText = "PREPARANDO...";
             if(typeof fbq !== 'undefined') fbq('track', 'Lead');
 
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyJKKLb65vUrUlFUPExpNkOz8pwv8Fjp8b2n3ves_tNoFVeL7Bgxkwci5KfH9GsdJ7c/exec';
@@ -301,12 +347,10 @@
                 idade: document.getElementById('idade').value,
                 valor: document.getElementById('valor').value
             };
-
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dados) })
             .then(() => {
-                // POPUP RESTAURADO AQUI
-                alert("Download iniciado! Verifique sua nova aba.");
-                window.open("https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i", "_blank");
+                window.location.href = "https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i";
+                alert("Download iniciando!");
                 form.reset();
                 checkForm();
                 btn.innerText = "BAIXAR O GUIA AGORA";
