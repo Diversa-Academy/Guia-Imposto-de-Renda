@@ -57,7 +57,6 @@
             text-decoration: none; transition: 0.3s;
         }
 
-        /* Hero Section */
         .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 60px 0; }
         .bg-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -75,17 +74,11 @@
         .hero-benefits li { margin-bottom: 18px; display: flex; align-items: flex-start; }
         .hero-benefits .material-symbols-outlined { color: var(--brand-blue); margin-right: 12px; font-size: 26px !important; }
 
-        /* --- PROVA SOCIAL AJUSTADA PARA LARGURA TOTAL REAL --- */
+        /* PROVA SOCIAL ALINHADA (LARGURA 100%) */
         .social-proof {
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.05); 
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 15px; /* Aumentado para dar mais "corpo" */
-            border-radius: 4px; 
-            margin-bottom: 25px; 
-            width: 100%; /* Garante ocupação total da box */
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 15px; border-radius: 4px; margin-bottom: 25px; width: 100%;
             box-sizing: border-box;
         }
         .avatars { display: flex; margin-right: 15px; }
@@ -99,7 +92,6 @@
         .proof-text { font-size: 0.9rem; color: #444; font-weight: 600; }
         .proof-text strong { color: var(--brand-blue); }
 
-        /* Form Box */
         .form-box { background: var(--off-white); padding: 50px; border-radius: 4px; color: var(--text-dark); box-shadow: 0 20px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
         .form-box h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
         .highlight-free { color: var(--brand-blue); text-decoration: underline; font-weight: 800; }
@@ -117,14 +109,12 @@
         }
         .btn-submit.ready { background-color: var(--brand-blue); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(0, 134, 255, 0.2); }
 
-        /* Seção Branca */
         .section-white { background-color: var(--off-white); color: var(--text-dark); padding: 80px 20px; text-align: center; }
         .features-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; text-align: left; }
         .ebook-mockup { width: 100%; max-width: 450px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
         .feature-item { display: flex; gap: 18px; margin-bottom: 30px; }
         .feature-item .check-icon { color: var(--brand-blue); font-size: 28px; font-weight: bold; }
 
-        /* Seção Dark Final */
         .section-dark { background-color: var(--bg-dark); padding: 100px 20px; text-align: center; border-top: 1px solid #222; }
         .strategy-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; text-align: left; margin-bottom: 50px; }
         .strategy-content h2 { font-size: 2.5rem; margin-bottom: 25px; font-weight: 800; color: var(--white); }
@@ -248,7 +238,6 @@
     </section>
 
     <footer>
-        <img src="https://drive.google.com/thumbnail?id=1Vsb-hzTqj4w6Vw4lsMoS1Lw22N0VAI-H&sz=w500" alt="Logo Diversa" class="footer-logo">
         <p class="footer-copy">© 2026 Diversa Investimentos • Todos os direitos reservados.</p>
     </footer>
 
@@ -263,7 +252,7 @@
         window.addEventListener("scroll", reveal);
 
         function updateDownloadCounter() {
-            const storageKey = 'diversa_final_exact_width';
+            const storageKey = 'diversa_final_exact_width_v3';
             const baseValue = 1249;
             let currentCount = localStorage.getItem(storageKey);
             if (!currentCount) {
@@ -302,6 +291,8 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.innerText = "ENVIANDO...";
+            if(typeof fbq !== 'undefined') fbq('track', 'Lead');
+
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyJKKLb65vUrUlFUPExpNkOz8pwv8Fjp8b2n3ves_tNoFVeL7Bgxkwci5KfH9GsdJ7c/exec';
             const dados = {
                 nome: document.getElementById('nome').value,
@@ -313,7 +304,9 @@
 
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dados) })
             .then(() => {
-                window.location.href = "https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i";
+                // POPUP RESTAURADO AQUI
+                alert("Download iniciado! Verifique sua nova aba.");
+                window.open("https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i", "_blank");
                 form.reset();
                 checkForm();
                 btn.innerText = "BAIXAR O GUIA AGORA";
