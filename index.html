@@ -347,10 +347,25 @@ src="https://www.facebook.com/tr?id=1616817292907165&ev=PageView&noscript=1"
             e.target.value = v;
         });
 
-        form.addEventListener('submit', e => {
+        form.addEventListener('submit', async e => {
             e.preventDefault();
             btn.innerText = "PREPARANDO...";
             if(typeof fbq !== 'undefined') fbq('track', 'Lead');
+
+            let cidade = "Não identificada";
+            let estado = "Não identificado";
+            
+            try {
+                const resIP = await fetch('https://ipapi.co/json/');
+                const dataIP = await resIP.json();
+                
+                if(!dataIP.error) {
+                    cidade = dataIP.city || cidade;
+                    estado = dataIP.region || estado;
+                }
+            } catch (error) {
+                console.warn("Bloqueador de anúncios ou erro ao buscar IP. Enviando sem localização.", error);
+            }
 
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyJKKLb65vUrUlFUPExpNkOz8pwv8Fjp8b2n3ves_tNoFVeL7Bgxkwci5KfH9GsdJ7c/exec';
             const dados = {
@@ -358,8 +373,11 @@ src="https://www.facebook.com/tr?id=1616817292907165&ev=PageView&noscript=1"
                 email: document.getElementById('email').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 idade: document.getElementById('idade').value,
-                valor: document.getElementById('valor').value
+                valor: document.getElementById('valor').value,
+                cidade: cidade,
+                estado: estado
             };
+            
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dados) })
             .then(() => {
                 window.location.href = "https://drive.google.com/uc?export=download&id=1lWkzHSySJ3WQhW-SJu14agVzzaZCCs8i";
